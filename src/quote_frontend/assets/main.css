@@ -1,0 +1,247 @@
+:root {
+    --drawer-background-color: #11191f;
+	--drawer-color: hsl(205deg, 16%, 77%);
+	--drawer-separator-color: #444;
+	--drawer-card-background-color: #141e26;
+	--drawer-card-box-shadow: 0.0145rem 0.029rem 0.174rem rgba(0, 0, 0, 0.01698),0.0335rem 0.067rem 0.402rem rgba(0, 0, 0, 0.024),0.0625rem 0.125rem 0.75rem rgba(0, 0, 0, 0.03),0.1125rem 0.225rem 1.35rem rgba(0, 0, 0, 0.036),0.2085rem 0.417rem 2.502rem rgba(0, 0, 0, 0.04302),0.5rem 1rem 6rem rgba(0, 0, 0, 0.06),0 0 0 0.0625rem rgba(0, 0, 0, 0.015);
+	--card-color: var(--color);
+	--card-spacing-horizontal: 1em;
+	--card-spacing-vertical: 1em;
+	--grid-spacing-horizontal : 2rem;
+}
+
+main {
+	margin-top: 0;
+	padding-top: 3em;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+	cursor: pointer;
+}
+textarea {
+	min-height: 150px;
+}
+
+
+#whoIsConnected {
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+	font-size: smaller;
+	color: lightgray;
+}
+
+img.circle {
+	border-radius: 100%;
+    height: 60px;
+	width: 60px;
+	margin-right: 16px;
+}
+
+blockquote:before {
+    content: open-quote;
+    top: -0.5em;
+    left: 0;
+}
+blockquote:after {
+    content: close-quote;
+    bottom: -1em;
+    right: 0;
+}
+blockquote:before,
+blockquote:after {
+    font-family: auto;
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 4em;
+    position: absolute;
+    color: lightgray;
+}
+blockquote {
+    display: flex;
+    position: relative;
+    border: 0;
+    border-inline-start: 0;
+    margin: 2em 0;
+    width: 100%;
+}
+blockquote img {
+	animation: floatingMBC 9s ease-in-out 2s infinite alternate;
+    position: relative;
+}
+#quoteOfTheQuotes {
+	padding-right: 2em;
+    flex: 1;
+}
+.quote p {
+	font-style: italic;
+}
+.action-buttons {
+    margin-top: 2em;
+    display:flex;
+}
+.action-buttons > * {
+    flex: 1 0 10px;
+    margin: 0.2em;
+}
+
+/***********************************************
+   FORM
+***********************************************/
+textarea + small {
+	display: none;
+}
+textarea[aria-invalid="true"]+small {
+	display: block;
+}
+
+/***********************************************
+   DRAWER MENU
+***********************************************/
+#forground {
+	background-color: rgba(0, 0, 0, 0.7);
+	width: 100%;
+	height: 0%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -10;
+}
+.radioDrawer:not(#radioCloseDrawerMenu):checked ~ #forground {
+	z-index: 99;
+	height: 100%;
+}
+.radioDrawer, .hiddenRadio, .hiddenCB {
+	display: none;
+}
+#radioDrawerQuotes:checked ~#drawerQuotes {
+	max-width: 768px;
+	right: 0px;
+	display: flex;
+}
+.drawer {
+	background: var(--drawer-background-color);
+	color: var(--drawer-color);
+	bottom: 0;
+	right: -100%;
+	max-width: 90%;
+	position: fixed;
+	top: 0px;
+	z-index: 101;
+	transition: all 0.2s ease-out 0s;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+}
+.drawer p {
+	color: var(--drawer-color);
+}
+.drawer .header {
+	padding: 1.25em;
+	border-bottom: 1px solid var(--drawer-separator-color);
+    display: flex;
+	justify-content: space-between;
+    align-items: center;
+}
+.drawer .header label:first-of-type {
+	display: inline;
+	margin-right: 1.5em;
+}
+
+.drawer.authenticated #btnLogin,
+.drawer.authenticated .header > span:first-of-type,
+.drawer:not(.authenticated) .header > span:last-of-type,
+.drawer:not(.authenticated) #selectOrderQuote,
+.drawer:not(.authenticated) .bubble-button {
+	display: none;
+}
+
+#btnLogin {
+	margin-left: 1em;
+}
+#selectOrderQuote {
+	display: none;
+	margin-top: 1.5em;
+	margin-bottom: 0;
+    max-width: 95%;
+    position: relative;
+    align-self: center;
+}
+
+.drawer .content {
+	overflow-y: auto;
+	padding: 1em;
+}
+.drawer .quote {
+	display: flex;
+	margin-top: 0.8em;
+	margin-bottom: 1.4em;
+}
+.drawer .boxed {
+	background-color: var(--drawer-card-background-color);
+	border-radius: 20px;
+	box-shadow: var(--drawer-card-box-shadow);
+	width: 100%;
+}
+.data-quote-index {
+	text-decoration: none;
+	cursor: pointer;
+}
+    
+/***********************************************
+   BUBBLE
+***********************************************/
+.bubble {
+    border-radius: 20px;
+    background-color: var(--card-background-color);
+    box-shadow: var(--card-box-shadow);
+    padding: 1em;
+}
+.bubble-header {
+    font-size: smaller;
+    display: flex;
+    justify-content: space-between;
+    border-style : solid;
+    border-width: 0 0 1px;
+    border-color: var(--dropdown-border-color);
+    padding-bottom: 0.4em;
+    margin-bottom: 1em;
+}
+.bubble-header > span {
+    color: var(--primary);
+    min-width: 100px;
+    text-align: right;
+}
+.bubble-quote {
+    text-align: justify;
+}
+.bubble-quote > p:last-of-type {
+    margin-bottom: 0;
+}
+.bubble-button {
+	color: white;
+}
+.bubble-button i {
+	font-size: large;
+	margin-right: 0.3em;
+}
+.bubble-button span {
+	margin-right: 0.5em;
+}
+.autor {
+    font-family: 'Photograph Signature', sans-serif;
+    font-size: xxx-large;
+    text-align: right;
+}
+
+/***********************************************
+   Animations
+***********************************************/
+@keyframes floatingMBC  {
+	0% { transform: translate(0,  0px); }
+    33%  { transform: translate(0, 15px); }
+    66%   { transform: translate(-15px, -0px); }  
+    100%  { transform: translate(0, -15px); } 
+}

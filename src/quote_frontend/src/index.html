@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Motoko Bootcamp 2023 - Quote DAO</title>
+    <base href="/" />
+    <link rel="icon" href="favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="pico.min.css" />
+    <link type="text/css" rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.cdnfonts.com/css/photograph-signature" rel="stylesheet">
+    <script src="default.js"></script>  
+  </head>
+
+
+  <body>
+    <input type="radio" id="radioCloseDrawerMenu" name="drawer-toggle" class="radioDrawer" />
+    <input type="radio" id="radioDrawerQuotes" name="drawer-toggle" class="radioDrawer" />
+    <label id="forground" for="radioCloseDrawerMenu"></label>
+    <span id="whoIsConnected"></span>
+    <div id="drawerQuotes" class="drawer">
+      <div class="header">
+				<label title="Fermer" for="radioCloseDrawerMenu"><i class="fa-solid fa-xmark"></i></label>
+				<span><b id="nbQuotes"></b><span> quotes are waiting on your votes !</span></span>
+        <span>Balance : <span id="votingpower">TODO (default 9, no decrease)</span></span>
+        <label role="button" id="btnLogin"><i class="fa-solid fa-wallet hover"></i> Login</label>
+			</div>
+      <select id="selectOrderQuote">
+        <option>Oldest</option>
+        <option>Most recent</option>
+        <option>Most loved</option>
+        <option>Most...hum, least liked</option>
+      </select>
+			<div class="content" id="drawerQuotesContent">
+				<p aria-busy="true">Loading, please wait...</p>
+      </div>
+    </div>
+
+    <main class="container">
+      <hgroup>
+        <h1>Quote DAO - Motoko Bootcamp 2023</h1>
+        <h2>The most loved quote (until the next change) is...</h2>
+      </hgroup>
+      <blockquote id="citation">
+        <img class="circle" src="logo.png" alt="">
+        <div id="quoteOfTheQuotes" class="quote" aria-busy="true">
+        </div>
+      </blockquote>
+      <div class="action-buttons">
+        <label for="radioDrawerQuotes" role="button" class="outline"><i class="fa-solid fa-infinity"></i> View all quotes and vote</label>
+        <button data-target="dialog-add-quote" onClick="toggleModal(event)">
+          <i class="fa-solid fa-comment"></i> Add a quote now !
+        </button>
+      </div>
+    </main>
+    
+    <dialog id="dialog-add-quote">
+      <article>
+        <a href="#close"
+          aria-label="Close"
+          class="close"
+          data-target="dialog-add-quote"
+          onClick="toggleModal(event)">
+        </a>
+        <hgroup>
+          <h3>Purpose a quote</h3>
+          <div>And become famous</div>
+        </hgroup>
+        <form>
+          <label for="author">Author's name</label>
+          <input type="text" name="author" id="author" placeholder="Optional">
+          <label for="quote">Quote*</label>
+          <textarea id="quote" name="quote" required></textarea>
+          <small>A full quote, more complex than "<span id="error-quote">aspdofijio</span>" please 😅</small>
+        </form>
+        <p>Is this quote really from this author ? Do not lie !</p>
+        <footer>
+          <label
+            role="button"
+            class="secondary"
+            data-target="dialog-add-quote"
+            onClick="toggleModal(event)">
+            Cancel
+          </label>
+          <label
+            id="submitQuote"
+            role="button"
+            data-target="dialog-add-quote"
+            >
+            Submit
+          </label>
+        </footer>
+      </article>
+    </dialog>
+  </body>
+</html>
